@@ -1,0 +1,33 @@
+1 function  - single reusable code /small task 
+2 module  - group of function /class & variables
+3 package  - group of modules 
+4 library  - module + package
+
+modules:
+1. inbuild modules : os, sys, platform, subprocess, pathlib, math, random, decimal , datetime, time, calendar , json, csv, pickle
+re, string
+2. external modules : we need to download and install 
+
+python input and output function 
+
+
+Virtual environment 
+
+1. venv 
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+.\AITrainingMarch2026\Scripts\activate.ps1
+..
+2. virtualenv
+3. pipenv
+4. conda
+5. poetry
+
+
+module 
+variables
+function/class
+calling the functions and class
+main code or exporting the function 
+
+
+password/weblink/url 
