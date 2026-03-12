@@ -31,3 +31,21 @@ main code or exporting the function
 
 
 password/weblink/url 
+
+
+Variable : symbolic name as a reference or label to hold the values
+1. Global variables
+2. Local variables 
+3. nonlocal variables 
+
+
+Data types:
+Numerical Data types:  integar, float
+String/text data types: string
+sequentical data types: list(single dimension arrary ), range , tuples
+
+
+Set data types: Set
+Dictionary Data types: Dictionary( key : value) pair --  Json/yaml 
+boolean data types: bool ( true/false or yes/no or 0/1)
+binary data types : bytes, bytearray -- pickles ( binary data types in files )
