@@ -1,1 +1,6 @@
 os module 
+sys module
+1. sys.argv  -- for input variables in dynamic
+2. sys.exit -- exit the code 
+3. sys.stdout or stderr
+4. sys.platform , sys.path or os.getcwd()
