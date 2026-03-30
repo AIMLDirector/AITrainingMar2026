@@ -1,0 +1,41 @@
+
+#  encoding -  converting the word into number without context and meaning
+#  vectorization - converting the word into number with context and meaning  without understand the transformatio of the words or equalent words ( learning -- , machine learning, learning python)
+#  embedding  - converting the word into number with context and meaning and dense semantic representation of the word in the sentence( learning - learn , learned, learning, learnable)  ( machine learning -- machine learning, ml, machine learning algorithms)-, studying  
+
+
+encoding -- 0,1
+
+2013 -- google  -- Word vectorization 
+1 word2vec
+   CBOW  -- fill blank -- i am <mask> swimming 
+   skip gram algorithm   - learning -- i am learning swimming/tennis/
+2 fasttext
+
+server  : dimension of the word - 100 = 100* 100 array 
+ vector [.12 0.23 .45 
+        1.2 1.5 0.64 ]  learn -- learning, learned 
+2017 --  word embedding ( which poistion the word is comming and what is the weightage of that word in that sentence )
+a = 01
+b = 02
+
+ word -- token -- vector format - database or memory 
+
+ 1 cosine similarity - word comparision or word mapping 
+Transformer:
+an -- 101 - - token number are unique
+
+am  -- 102
+
+and 
+
+
+
+
+word -- 20045
+
+server -- 200065, desktop -- 200069,
+
+models ( transformer )
+
+

@@ -49,3 +49,15 @@ Set data types: Set
 Dictionary Data types: Dictionary( key : value) pair --  Json/yaml 
 boolean data types: bool ( true/false or yes/no or 0/1)
 binary data types : bytes, bytearray -- pickles ( binary data types in files )
+
+
+while loop :
+
+while condition:
+    action/if condition
+
+while True:  -- infinite loop code  - chatbot/performance/function testing/validation 
+    action/condition 
+    break/continue/pass
+
+    
