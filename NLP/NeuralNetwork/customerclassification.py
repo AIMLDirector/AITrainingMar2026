@@ -12,14 +12,21 @@ import numpy as np
 from tensorflow import keras
 from tensorflow.keras import layers
 
-# Example training data
-intents = [
-    "I want to cancel my subscription",
-    "My internet is not working properly",
-    "How can I update my billing address?"
-]
-labels = np.array([0, 1, 2])  # 0=cancel, 1=tech support, 2=billing
+# # Example training data
+# intents = [
+#     "I want to cancel my subscription",
+#     "My internet is not working properly",
+#     "How can I update my billing address?"
+# ]
+# labels = np.array([0, 1, 2])  # 0=cancel, 1=tech support, 2=billing
 
+
+intents = [
+    "cancel sub", "stop my service", "end subscription", # Label 0
+    "internet down", "wifi slow", "router broken",      # Label 1
+    "change card", "new billing address", "update pay"   # Label 2
+]
+labels = np.array([0, 0, 0, 1, 1, 1, 2, 2, 2])
 # Tokenization
 tokenizer = keras.preprocessing.text.Tokenizer(num_words=5000)
 tokenizer.fit_on_texts(intents)
@@ -42,7 +49,7 @@ model.compile(optimizer="adam",
 model.fit(X, labels, epochs=15, verbose=1)
 
 # --- Real-time test ---
-new_query = ["I am facing issues with my payment"]
+new_query = ["I am to update to my new payment system "]
 X_new = tokenizer.texts_to_sequences(new_query)
 X_new = keras.preprocessing.sequence.pad_sequences(X_new, maxlen=20)
 pred = model.predict(X_new)

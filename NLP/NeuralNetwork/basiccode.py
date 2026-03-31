@@ -28,4 +28,6 @@ model.fit(X, y, epochs=20, batch_size=16, verbose=1)
 # Test prediction
 test_point = np.array([[0.9, 0.2]])
 prediction = model.predict(test_point)
-print(f"Predicted class: {int(prediction > 0.5)}, Probability: {prediction[0][0]:.4f}")
+
+print(f"Predicted class: {int((prediction > 0.5).item())}, Probability: {prediction[0][0]:.4f}")
+# print(f"Predicted class: {int(prediction > 0.5)}, Probability: {prediction[0][0]:.4f}")
