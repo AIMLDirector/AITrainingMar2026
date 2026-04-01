@@ -49,7 +49,7 @@ model.compile(optimizer="adam",
 model.fit(X, labels, epochs=15, verbose=1)
 
 # --- Real-time test ---
-new_query = ["I am to update to my new payment system "]
+new_query = ["payment gateway"]
 X_new = tokenizer.texts_to_sequences(new_query)
 X_new = keras.preprocessing.sequence.pad_sequences(X_new, maxlen=20)
 pred = model.predict(X_new)
