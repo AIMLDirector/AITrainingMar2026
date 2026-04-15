@@ -1,0 +1,172 @@
+langchain Framework
+1 RAG Framework - Retrieval Augumentation and Generation 
+  1. Index - storing the data in the structure format with headers( index)
+  2. Retrieving the data in a structure format 
+  3. output parser -- json , text, raw 
+
+Index:
+1 load the data
+2 split the data into small piece -- chunk
+3 convert the data into embedding format( embedding model) -- 5 * 5 array 
+4 storing the embedded data in the vector store( vector db )
+
+Retrieval :
+1 Data source 
+2 embedding model ( convert your query into embedding format )
+3 search in the index with embedding matching - context,  pattern
+4 ranking of the data will be done by the model 
+5 summarize the output 
+6 display in the screen 
+
+outputparser :
+1 limit 
+2 data format
+3 in memory - short term memory  - RAM /long term memory  - Disk /cache db 
+
+2 AI Agent Framework -  with out orchestration we implement the execution of the task - Ai agent
+   single agent ( tasks ) -- one platform/ one db / one application 
+
+3 Agentic Ai framework  - with orchestration we implement the execution of the task -- Agentic AI 
+
+muliti agent  & multi task  & multiple platform/OS/application/DB
+
+Automation : single and simple task with repeated work, without human intervention , linear pattern on execution
+chatbot 
+orchestrion --  complex task, end to end workflow , with multiple condition validation , human in the loop
+ payment gateway/ credit card bill payment /money transaction  + context + smartness  - Agentic AI  
+
+ Hybrid RaG - ( internal doc - RAG  and external web search) --  open ai 5.X
+
+ short term memory --  history - last 10 information / 20 information (queston/answer )
+
+ long term memory --  behaviour pattern 
+
+ 1. coding -- 
+ 2. shopping --
+ 3 . health related -- 
+ 
+ loader = [CSVLoader()
+            PyPDFLoader()
+            WebbaseLoader()
+    
+)]
+
+
+docs = loader.load()
+
+
+loaded_data = []
+
+for i in data:
+   if i.endwith(*.pdf)
+    loaded_data.append(PyPDFLoader(test.pdf))
+   elsif i.endwith(*.csv)
+    loaded_data.append(CSVLoader())
+
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+1  -- 100 token  - 0 - 100 
+2 -- 100  token  --   90 - 190
+                          180 - 280
+                              270 - 370 
+                      
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=10)
+chunk = text_splitter.split_text(docs)
+
+
+from langchain_ollama import OllamaEmbeddings
+
+embeddings = OllamaEmbeddings(
+    model="llama3",
+)
+for  i  in chunk: 
+  vectorstore = InMemoryVectorStore.from_texts($i , embedding=embeddings)
+
+
+from langchain_chroma import Chroma
+
+vector_store = Chroma(
+    collection_name="example_collection",
+    embedding_function=embeddings,
+    persist_directory="./chroma_langchain_db", 
+    data = chunk
+)
+
+from langchain_community.doc_loader import PyPDFLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_ollama import OllamaEmbeddings
+from langchain_chroma import Chroma
+from langchain.agent import OpenAI
+from dotenv 
+load_env()
+
+loaded_data = []
+
+for i in data:
+   if i.endwith(*.pdf)
+    loaded_data.append(PyPDFLoader(test.pdf))
+   elsif i.endwith(*.csv)
+    loaded_data.append(CSVLoader())
+
+  loaded_data.load()
+
+
+  embeddings = OllamaEmbeddings(
+    model="llama3",
+)
+
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=10)
+chunk = text_splitter.split_text(docs)
+
+vector_store = Chroma(
+    collection_name="example_collection",
+    embedding_function=embeddings,
+    persist_directory="./chroma_langchain_db", 
+    data = chunk
+)
+
+
+retriever = vector_store.as_retriever()
+
+# Retrieve the most similar text
+retrieved_documents = retriever.invoke("What is LangChain?")
+
+# Show the retrieved document's content
+print(retrieved_documents[0].page_content)
+
+
+Langchain
+1 langchain
+2 langchain-core 
+3 langchain-community 
+4 langhchain-vendor
+5 langchain-text-splitters 
+
+DB: Vectorstore 
+1. Fiass - facebook
+2. chroma -- 
+3. pinecone/qdrant 
+4. mongodb/ postresql 
+
+Documnet Loader /text-splitter/vectorstore 
+1. Csv/pdf/text/word/yaml/json 
+
+1 load the documents from the data source - local, sharepoint, db, livestream data  - weekly once 
+2. consolidation of the data ( pdf -- , csv, html -- )
+3. 1 unified document ( 1 documents - 10csv,10 pdf, 10 excel) -  
+4. split the document into equal size - chunking 
+5. convert the chunks into embedding format
+6. load the embedded data into vector store ( DBname, chunk count )
+
+cloud  - 3/4 --  will be done in single step - indexing( test/dev  , preprod, prod index ) -  
+
+azure search index, blob, vectorstore  
+
+blob -- common data loading  - scheduler -- load the data from different product to blob storage 
+
+blob storage -- unified doc -- vectorstore 
+
+mongodb atlas - SAAS -  -- 40 GB  - paid -- $300
+
+200GB -- 
+
+mongodb cloud -- mongodb cluster in the ( azure/aws/google )
