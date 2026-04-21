@@ -1,21 +1,15 @@
 import os
 import json
-from dotenv import load_dotenv
-
-# LangChain imports
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain.agents import create_agent
 from langchain.tools import tool
 from langchain_community.tools import DuckDuckGoSearchRun
-from langchain_community.tools.tavily_search import TavilySearchResults
+from langchain_tavily import TavilySearch
 from langchain_community.vectorstores import FAISS
-from langchain_community.document_loaders import TextLoader, PyPDFLoader
+from langchain_community.document_loaders import TextLoader, PyPDFLoader,CSVLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_classic.chains import RetrievalQA
-
-# ===============================
-# 🔧 Setup and Initialization
-# ===============================
+from dotenv import load_dotenv
 load_dotenv()
 
 openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -31,9 +25,7 @@ llm = ChatOpenAI(
     api_key=openai_api_key
 )
 
-# ===============================
-# 📄 Local Document Search Tool
-# ===============================
+
 @tool("local_doc_search")
 def local_doc_search(query: str, directory: str = "../data") -> str:
     """Search for answers in local PDF or TXT documents within the given directory."""
@@ -45,10 +37,12 @@ def local_doc_search(query: str, directory: str = "../data") -> str:
         for file in os.listdir(directory):
             path = os.path.join(directory, file)
 
-            if file.endswith(".txt"):
+            if file.endswith(".txt") or file.endswith(".log"):
                 docs.extend(TextLoader(path).load())
             elif file.endswith(".pdf"):
                 docs.extend(PyPDFLoader(path).load())
+            elif file.endswith(".csv"):
+                docs.extend(CSVLoader(path).load())
 
         if not docs:
             return f"No readable files found in {directory}"
@@ -80,38 +74,26 @@ def local_doc_search(query: str, directory: str = "../data") -> str:
         return f"Error in local search: {str(e)}"
 
 
-# ===============================
-# 🌐 Tavily Search Tool (UPDATED)
-# ===============================
-tavily_search = TavilySearchResults(
+
+tavily_search = TavilySearch(
     max_results=5,
     tavily_api_key=tavily_api_key,
     name="tavily_search",
     description="Search the web for real-time and technical information"
 )
 
-# ===============================
-# 🌍 DuckDuckGo Fallback Tool
-# ===============================
 web_search = DuckDuckGoSearchRun(name="web_search")
 
-# ===============================
-# 🧰 Tools List
-# ===============================
+
 tools = [local_doc_search, tavily_search, web_search]
 
-# ===============================
-# 🤖 Agent Creation
-# ===============================
 agent = create_agent(
     model="gpt-4o-mini",
     tools=tools,
     system_prompt="You are an AI assistant. Use tools intelligently when needed."
 )
 
-# ===============================
-# 🔍 Query Execution
-# ===============================
+
 query = "Investigate Kafka replication log. Search local logs, Tavily, and the web for related insights."
 
 response = agent.invoke({
@@ -120,9 +102,7 @@ response = agent.invoke({
     ]
 })
 
-# ===============================
-# 📦 Output Formatting
-# ===============================
+
 last_message = response['messages'][-1]
 
 result = {
