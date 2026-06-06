@@ -1,0 +1,9 @@
+Tools - agent - task - crew( how to run  - sequential/parallel)
+
+tools  - API , webservice, cli, module , cloud, platform - fetch the data
+
+agent --  role, goal, backstory, tools
+
+task -- agents, description, expected output 
+
+crew -- agents, tasks, process - sequential,depend 

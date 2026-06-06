@@ -1,0 +1,16 @@
+agent -- mcpserver( protocol ) - mcp client (tools )
+7-8
+
+agent -   mcp server - mcp client (HR)
+          mcp server - mcp client (Finance)
+
+
+mcp server(open source mcp server or u can use fastapi to build you own mcp server ( api ))
+
+10
+
+master agent (router)  finance agent( tools(password )) SSL /token 
+                       HR agent( tools) ssl/token 
+
+anthropic claude co-work  -- agent
+          claude mytios --  security 

@@ -1,0 +1,63 @@
+mcp server( routing)
+
+ mcp1 -- ( gmail.com/inbox  - personnel 
+           msteam/inbox --  official 
+           slack.com/inbox - security )
+
+
+can u read my bank transaction and indentify any critical messages that need to be replied ?  - gmail 
+
+rule based
+mcp1 -- gmail
+mcp2 -- msteam
+mcp3 -- slack 
+
+serial method
+
+mcp1 -- ( server log( cloud watch), db log( db manager or cloudwatch. kinesis ), application log( cloudwatch, s3 buckets) )
+ 
+ what are the critical alerts happen on application name testapp1
+
+ testapp1 --   servers --> db -> application -> loadbalancer
+s1 , s2, s3 
+db1 , db2  
+lb1
+testapp1
+
+summarize( all the logs  )
+
+ 1 alert start on app side -- 
+ 2 LB2
+ 3 server -- 
+
+
+ problem: 
+ 1 network issue 
+
+ solution: 
+ 1 escalate to the vendor
+ 2 solution or fixes
+
+ 1. reduce the I/O  ( tool1, tool2 , tool3 ) 1/ 3
+ 2. restrict the level of access to my data
+ 3. context of the user requirement
+
+
+challengw :
+1.  firewall  - mcp server
+2.  mcp layer for security product (  auth0, apigateway, layer7 , loadbalancer, Zscaler, crowdstrike)
+
+Security Layer 
+
+mcp server( python script , java, .net )
+
+ github(mcp plugin), microsoft(mcp plugin - endpoint)  , azure ( mcp ) 
+
+
+
+ agent( mcp tools  -- github , microsoft )
+
+
+
+github -- cli, webhook endpoint, api endpoint, mcp endpoint 
+servicenow -- cli, webhook , api, mcp 

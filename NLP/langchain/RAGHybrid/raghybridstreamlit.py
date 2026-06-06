@@ -7,6 +7,7 @@ from langchain_community.tools import DuckDuckGoSearchRun
 from langchain.tools import tool
 from tavily import TavilyClient
 from dotenv import load_dotenv
+import asyncio
 
 # ===============================
 # Load environment variables
@@ -67,10 +68,10 @@ def analyze_kafka_log(file_path: str) -> str:
     return "\n".join(findings)
 
 @tool
-def tavily_search(query: str) -> str:
+async def tavily_search(query: str) -> str:
     """Search Kafka issues using Tavily API."""
     client = TavilyClient(api_key=TAVILY_API_KEY)
-    res = client.search(query=query, max_results=5)
+    res = await client.search(query=query, max_results=5)
     return json.dumps(res.get("results", []), indent=2)
 
 web_search = DuckDuckGoSearchRun()
@@ -81,8 +82,13 @@ web_search = DuckDuckGoSearchRun()
 tools = [
     check_kafka_log_exists,
     analyze_kafka_log,
-    tavily_search,
+    asyncio.run(tavily_search),
     web_search
+]
+tools1 = [
+    analyze_kafka_log,
+    tavily_search,
+
 ]
 
 agent = create_agent(

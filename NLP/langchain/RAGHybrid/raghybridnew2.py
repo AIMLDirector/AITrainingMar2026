@@ -103,10 +103,12 @@ You are a Kafka SRE AI.
 Always run analyze_kafka_log first.
 If severity is CRITICAL, you MUST call tavily_search with the detected issue.
 If severity is OK, never use web search tools.
-provide me the immediate fixes we need to do
-provide me the long term fixes we need to do
+provide me the immediate fixes we need to do with code and steps
+provide me the long term fixes we need to do with code and steps
 """
 )
+
+
 
 # ===============================
 # Run

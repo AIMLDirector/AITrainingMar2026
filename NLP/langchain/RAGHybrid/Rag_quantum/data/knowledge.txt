@@ -1,0 +1,8 @@
+Kafka replication failure happens when broker is down.
+Solution: restart broker and check ISR sync.
+
+Airflow scheduling delay happens due to worker overload.
+Solution: increase worker nodes or optimize DAG.
+
+Spark job failure happens due to memory issues.
+Solution: tune executor memory and partitions.
